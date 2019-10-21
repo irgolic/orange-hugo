@@ -1,5 +1,11 @@
 {{ define "main"}}
 
+<div id="bkgOverlay" class="backgroundOverlay"></div>
+
+<div id="delayedPopup" class="delayedPopupWindow">
+    <iframe src="http://mailtrain.biolab.si/subscription/JVS_UVh-8"></iframe>
+</div>
+
 <section id="features" class="features section downloads ">
         <div class="container downloados" style="margin-top: 50px;">
             <div class="row" style="padding: 0px !important;text-align: center;">
@@ -24,12 +30,14 @@
                 <div class="">
                     <div class="content">
                         <h2>Download the latest version for Windows</h2>
-                        <a id="recommended-download-win" style="margin-top: 10px" class="btn btn-warning big-button-base" href="https://service.biolab.si/download/orange?platform=win">
+                        <a id="recommended-download-win" style="margin-top: 10px" class="btn btn-warning big-button-base download-button" href="https://service.biolab.si/download/orange?platform=win">
                             Download Orange
                         </a>
 
                         <h3><a id="standalone"></a>Standalone installer (default)</h3>
-                        <a id="recommended-download" href="https://service.biolab.si/download/orange?platform=win">Orange3-Miniconda-x86_64.exe (64 bit)</a><br />
+                        <a id="recommended-download" href="https://service.biolab.si/download/orange?platform=win"
+                            class="download-button">Orange3-Miniconda-x86_64.exe
+                            (64 bit)</a><br />
                         <p>Can be used without administrative priviledges.</p>
                         <h3><a id="anaconda"></a>Anaconda</h3>
                         <p>If you are using python provided by <a href="https://docs.conda.io/en/latest/miniconda.html">Anaconda</a>
@@ -57,12 +65,12 @@
                 <div class="" >
                     <div class="content">
                         <h2>Download the latest version for Mac</h2>
-                        <a id="recommended-download-mac" style="margin-top: 10px" class="btn btn-warning big-button-base" href="https://service.biolab.si/download/orange?platform=mac">
+                        <a id="recommended-download-mac" style="margin-top: 10px" class="btn btn-warning big-button-base download-button" href="https://service.biolab.si/download/orange?platform=mac">
                             Download Orange
                         </a>
                         
                         <h3><a id="standalone"></a>Bundle</h3>
-                        <a id="recommended-download" href="https://service.biolab.si/download/orange?platform=mac">Orange.dmg</a><br/>
+                        <a id="recommended-download" class="download-button" href="https://service.biolab.si/download/orange?platform=mac">Orange.dmg</a><br/>
                         <p>A universal bundle with everything packed in and ready to use.</p>
 
                         <h3><a id="anaconda"></a>Anaconda</h3>
@@ -235,6 +243,36 @@
             els[i].classList.remove('icon-selected');
           }
         }
+
+        var popupShown = false;
+
+        function showEmailCourse() {
+            if (popupShown) {
+                return
+            }
+            $("#bkgOverlay").delay(2800).fadeIn(200);
+            $("#delayedPopup").delay(3000).fadeIn(200);
+            popupShown = true
+        }
+
+        function hideEmailCourse() {
+            $("#bkgOverlay").fadeOut(200);
+            $("#delayedPopup").fadeOut(200);
+        }
+
+        $(document).ready(function () {
+            $(".download-button").click(showEmailCourse);
+
+            //close popup when clicking x or off popup
+            $('#bkgOverlay').click(hideEmailCourse);
+
+            //close popup when clicking the esc keyboard button
+            $(document).keyup(function (event) {
+                if (event.which == '27') {
+                    hideEmailCourse();
+                }
+            });
+        });
         </script>
     </section>
 

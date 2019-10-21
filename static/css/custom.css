@@ -911,3 +911,38 @@ blockquote cite {
     }
 }
 
+/*   This is a dimmed background overlay   */
+.backgroundOverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    opacity: .85;
+    filter: alpha(opacity=85);
+    -moz-opacity: .85;
+    z-index: 101;
+    display: none;
+}
+
+/*   This is the Popup Window   */
+.delayedPopupWindow {
+    display: none;
+    position: fixed;
+    width: auto;
+    max-width: 480px;
+    height: 310px;
+    top: 50%;
+    left: 50%;
+    margin-left: -260px;
+    margin-top: -180px;
+    background-color: #efefef;
+    border: 2px solid #333;
+    z-index: 102;
+    padding: 10px 20px;
+}
